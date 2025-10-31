@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 // Fetching API data
 async function fetchMealIdeas(ingredient) {
@@ -39,26 +40,26 @@ export default function MealIdeas({ ingredient }) {
     </h2>
 
     {meals.length === 0 ? (
-      <p className="text-gray-400 italic">No meal ideas found.</p>
-    ) : (
-      <ul className="space-y-4 w-full max-w-md">
-        {meals.map((meal) => (
-          <li
-            key={meal.idMeal}
-            className="flex items-center bg-neutral-800 text-white rounded-xl shadow-md p-4 hover:bg-neutral-700 transition"
-          >
-            <img
-              src={meal.strMealThumb}
-              alt={meal.strMeal}
-              width={80}
-              height={80}
-              className="rounded-lg mr-4"
-            />
-            <span className="text-lg font-medium">{meal.strMeal}</span>
-          </li>
-        ))}
-      </ul>
-    )}
+        <p className="text-gray-400 italic">No meal ideas found.</p>
+      ) : (
+        <ul className="space-y-4 w-full max-w-md">
+          {meals.map((meal) => (
+            <li
+              key={meal.idMeal}
+              className="flex items-center bg-neutral-800 text-white rounded-xl shadow-md p-4 hover:bg-neutral-700 transition"
+            >
+              <Image
+                src={meal.strMealThumb}
+                alt={meal.strMeal}
+                width={80}
+                height={80}
+                className="rounded-lg mr-4"
+              />
+              <span className="text-lg font-medium">{meal.strMeal}</span>
+            </li>
+          ))}
+        </ul>
+      )}
 </div>
   );
 }
