@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 // Fetching API data
@@ -21,7 +21,7 @@ async function fetchMealIdeas(ingredient) {
 
 export default function MealIdeas({ ingredient }) {
   const [meals, setMeals] = useState([]);
-
+  // Will get an error if I dont useCallback to wrap the fechMeal
   const loadMealIdeas = useCallback(async () => {
     const mealData = await fetchMealIdeas(ingredient);
     setMeals(mealData);
