@@ -21,21 +21,21 @@ async function fetchMealIdeas(ingredient) {
 export default function MealIdeas({ ingredient }) {
   const [meals, setMeals] = useState([]);
 
-  async function loadMealIdeas() {
+  const loadMealIdeas = useCallback(async () => {
     const mealData = await fetchMealIdeas(ingredient);
     setMeals(mealData);
-  }
+  }, [ingredient]);
 
   useEffect(() => {
     if (ingredient) {
       loadMealIdeas();
     }
-  }, [ingredient]);
+  }, [ingredient, loadMealIdeas]);
 
   return (
     <div className="flex flex-col items-center">
     <h2 className="text-2xl font-semibold mb-4 text-purple-600">
-      Meal Ideas for "{ingredient || "..."}"
+       Meal Ideas for {ingredient ? `"${ingredient}"` : "..."}
     </h2>
 
     {meals.length === 0 ? (
