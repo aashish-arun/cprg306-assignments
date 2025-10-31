@@ -21,7 +21,7 @@ async function fetchMealIdeas(ingredient) {
 
 export default function MealIdeas({ ingredient }) {
   const [meals, setMeals] = useState([]);
-  // Will get an error if I dont useCallback to wrap the fechMeal
+  // Will get an error if I dont useCallback to wrap the fechMeal -- used chatGPT.
   const loadMealIdeas = useCallback(async () => {
     const mealData = await fetchMealIdeas(ingredient);
     setMeals(mealData);
@@ -48,12 +48,12 @@ export default function MealIdeas({ ingredient }) {
               key={meal.idMeal}
               className="flex items-center bg-neutral-800 text-white rounded-xl shadow-md p-4 hover:bg-neutral-700 transition"
             >
-              <Image
+              <img
                 src={meal.strMealThumb}
                 alt={meal.strMeal}
                 width={80}
                 height={80}
-                className="rounded-lg mr-4"
+                style={{ borderRadius: "8px", marginRight: "1rem" }}
               />
               <span className="text-lg font-medium">{meal.strMeal}</span>
             </li>
