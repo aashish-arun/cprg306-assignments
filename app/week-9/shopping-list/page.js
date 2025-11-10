@@ -12,7 +12,9 @@ import { useEffect } from "react";
 export default function Page() {
   const { user } = useUserAuth();
   const router = useRouter();
-
+  const [items, setItems] = useState(itemsData);
+  const [selectedItemName, setSelectedItemName] = useState("");
+  
   useEffect(() => {
     if (user === null) {
       router.push("/week-9");
@@ -23,9 +25,6 @@ export default function Page() {
   if (user === null) {
     return null; 
   }
-  
-  const [items, setItems] = useState(itemsData);
-  const [selectedItemName, setSelectedItemName] = useState("");
 
   const handleAddItem = (newItem) => {
     setItems((prevItems) => [...prevItems, newItem]);
