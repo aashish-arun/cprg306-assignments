@@ -1,6 +1,5 @@
 "use client"
 import { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
 
 // Fetching API data
 async function fetchMealIdeas(ingredient) {

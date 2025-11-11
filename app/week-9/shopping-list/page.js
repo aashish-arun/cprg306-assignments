@@ -5,7 +5,7 @@ import ItemList from "./item-list";
 import itemsData from "./items.json";
 import MealIdeas from "./meal-ideas";
 
-import { useUserAuth } from "../utils/AuthContext";
+import { useUserAuth } from "../contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
