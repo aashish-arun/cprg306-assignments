@@ -20,20 +20,22 @@ export default function Page() {
     }
   }, [user, router]);
 
+  // Load item after hook are defined
+  useEffect(() => {
+    if (!user?.uid) return;
+
+    async function loadItems() {
+      const results = await getItems(user.uid);
+      setItems(results);
+    }
+
+    loadItems();
+  }, [user]);
+
   // While checking auth state or redirecting, prevent UI flicker, otherwise will get an next error.
   if (user === null) {
     return null; 
   }
-
-  async function loadItems() {
-    if (!user?.uid) return;
-    const results = await getItems(user.uid);
-    setItems(results);
-  }
-
-  useEffect(() => {
-    loadItems();
-  }, [user]);
 
   const handleAddItem = async (newItem) => {
     if (!user?.uid) return;
